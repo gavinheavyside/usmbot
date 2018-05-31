@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/ChimeraCoder/anaconda"
-	"github.com/Sirupsen/logrus"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/sirupsen/logrus"
 )
 
 var (
