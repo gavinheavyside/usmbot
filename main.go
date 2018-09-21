@@ -159,7 +159,7 @@ func lyric() {
 		"He flies through the air, With the greatest of ease, That daring young man, In the blue dungarees",
 		"And his poor, pathetic parents, So stricken with grief, That they've spelt his name wrong, On his funeral wreath!",
 		"Yesterday they took away our bus stop, Today they'll try and take our happy home",
-		"If we club together, With all the diamonds we've saved, We could look in our hearts and say, We've got it in spades.",
+		"If we club together, with all the diamonds we've saved, we could look to our hearts and say, we've got it in spades.",
 		"The ambulance sirens rang, as they wheeled her to the stand",
 		"Did the three bears shit in the woods?",
 		"The wheels of justice turned, 'til the tyres were bald and burned",
