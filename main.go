@@ -108,7 +108,7 @@ func lyric() {
 		"I James Robert Injustice, being of unsound body and mind, hereby bequeath my worldly good to anyone who wants 'em.",
 		"Give my body to medical science, If medical science will have me",
 		"They can take my lungs and kidneys, But my heart belongs to Daphne",
-		"Are you prepared to meet your maker, And ask for you money back?",
+		"Are you prepared to meet your maker, And ask for your money back?",
 		"This is my second to last will and testament, Only a rough draft, A handwritten estimate",
 		"Don't bury me at sea, The pollution might kill me!",
 		"The tequila sun is rising, And the Harvey's Bristol moon is sinking",
