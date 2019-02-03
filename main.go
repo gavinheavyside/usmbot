@@ -105,7 +105,7 @@ func lyric() {
 		"To the North of Katmandu, There's tiny children sniffing glue",
 		"Like losers in a Michael Winner script, It's got a BMX certificate",
 		"Outside there's a blazing sun, It's a perfect day to drop the bomb",
-		"I James Robert Injustice, being of unsound body and mind, hereby bequeath my worldly good to anyone who wants 'em.",
+		"I James Robert Injustice, being of unsound body and mind, hereby bequeath all my worldly goods to anyone who wants 'em.",
 		"Give my body to medical science, If medical science will have me",
 		"They can take my lungs and kidneys, But my heart belongs to Daphne",
 		"Are you prepared to meet your maker, And ask for your money back?",
