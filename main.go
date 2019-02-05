@@ -155,7 +155,7 @@ func lyric() {
 		"A black eye for a black eye, A chipped tooth for a chipped tooth",
 		"A fraction of a half life, Some housework and some home truths, And nothing but the home truth",
 		"And it's goodbye Ruby Tuesday, Come home you silly cow, We've baked a cake and your friends are waiting",
-		"nd David Icke says he'd like to show us how, To love you back to life again now",
+		"And David Icke says he'd like to show us how, To love you back to life again now",
 		"He flies through the air, With the greatest of ease, That daring young man, In the blue dungarees",
 		"And his poor, pathetic parents, So stricken with grief, That they've spelt his name wrong, On his funeral wreath!",
 		"Yesterday they took away our bus stop, Today they'll try and take our happy home",
