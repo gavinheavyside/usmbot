@@ -137,7 +137,7 @@ func lyric() {
 		"Falling on a bruise",
 		"You need your Nutrasweet Daddy, Or some Peppermint Patty, Or just a hackneyed old cabby, Who can take you and your baby away",
 		"It's not that I'm agorophobic... it's just that it's not safe to go outside anymore.",
-		"I've looted and I've begged, On the tubes of the Bec on Broadway",
+		"I've looted and I've begged, on the tubes of the Bec, and Broadway",
 		"I've been run over by cars, And to prove it here's the scars, On my wrist",
 		"I've been cut, I've been stitched, I've been buggered, bewitched, and abadoned",
 		"The Final Comedown, It's a victory worth sharing",
