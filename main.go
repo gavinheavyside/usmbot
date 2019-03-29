@@ -139,7 +139,7 @@ func lyric() {
 		"It's not that I'm agorophobic... it's just that it's not safe to go outside anymore.",
 		"I've looted and I've begged, on the tubes of the Bec, and Broadway",
 		"I've been run over by cars, And to prove it here's the scars, On my wrist",
-		"I've been cut, I've been stitched, I've been buggered, bewitched, and abadoned",
+		"I've been cut, I've been stitched, I've been buggered, bewitched, and abandoned",
 		"The Final Comedown, It's a victory worth sharing",
 		"Hello, good evening and welcome, To nothing much",
 		"The comfort and the joy, Of feeling lost, With the only living boy In New Cross",
