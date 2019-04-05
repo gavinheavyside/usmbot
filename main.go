@@ -121,7 +121,7 @@ func lyric() {
 		"Southern Comfort, mother's ruin, Happy hours of homeless brewing",
 		"Galloway's sore throat expectorant, After-shave and disinfectant",
 		"Parazone and Fairy Liquid, If it's in a glass, you'll drink it",
-		"Ground floor, shoppers' paradise, Haberdashery, needles, spoons, and knives",
+		"Ground floor, Shoppers' Paradise, habit-dashery, needles, spoons, and knives",
 		"Spend your money, girls, on sprays and lipsticks, Tested on bunnies, girls, strays, and misfits",
 		"We've got a free pair of flares with every hip replacement, Just take the stairs to the bargain basement",
 		"The big shop is open, It's a wonderful world",
