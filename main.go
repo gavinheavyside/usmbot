@@ -135,7 +135,7 @@ func lyric() {
 		"It leaves you a wreckage, all postage and package, Sealed with Glasgow kiss",
 		"You win some, And you lose some, But I've lost the will to lose, My part time job, My faith in God, Falling on a bruise",
 		"Falling on a bruise",
-		"You need your Nutrasweet Daddy, Or some Peppermint Patty, Or just a hackneyed old cabby, Who can take you and your baby away",
+		"You need your Nutrasweet Daddy, Or some Peppermint Patty, Or just a hackneyed old cabby, Who can take you and your babby away",
 		"It's not that I'm agorophobic... it's just that it's not safe to go outside anymore.",
 		"I've looted and I've begged, on the tubes of the Bec, and Broadway",
 		"I've been run over by cars, And to prove it here's the scars, On my wrist",
