@@ -90,7 +90,7 @@ func lyric() {
 		"With more aliases than Klaus Barbie, The master butcher of Leigh-on-Sea",
 		"Just about to take the stage, The one-and-only, hold the front page",
 		"There's bats in the belfry, The windows are jammed, The toilets ain't healthy, And he don't give a damn",
-		"He's buying up houses for the has-beens and healthy, From Lands End to Southend and Chelsea",
+		"He's buying up houses for has-beens (help me), From Lands End to Southend and Chelsea",
 		"It was midnight on the murder mile, Wilson Pickett's finest hour",
 		"From the gas board to the fire brigade, There's a dozen GPO's, An all night chicken takeaway, Which was finger lickin' closed",
 		"It was midnight on the murder mile, O.K. let's riot",
