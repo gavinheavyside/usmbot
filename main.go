@@ -1,24 +1,34 @@
 package main
 
 import (
+	"context"
 	"math/rand"
-	"net/url"
 	"os"
 	"time"
 
-	"github.com/ChimeraCoder/anaconda"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/sirupsen/logrus"
+	"github.com/mattn/go-mastodon"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
-	consumerKey       = getenv("TWITTER_CONSUMER_KEY")
-	consumerSecret    = getenv("TWITTER_CONSUMER_SECRET")
-	accessToken       = getenv("TWITTER_ACCESS_TOKEN")
-	accessTokenSecret = getenv("TWITTER_ACCESS_TOKEN_SECRET")
-
-	log = &logger{logrus.New()}
+	mastodonServer       = getenv("MASTODON_SERVER")
+	mastodonClientId     = getenv("MASTODON_CLIENT_ID")
+	mastodonClientSecret = getenv("MASTODON_CLIENT_SECRET")
+	mastodonAccessToken  = getenv("MASTODON_ACCESS_TOKEN")
 )
+
+func init() {
+	// Log as JSON instead of the default ASCII formatter.
+	log.SetFormatter(&log.JSONFormatter{})
+
+	// Output to stdout instead of the default stderr
+	// Can be any io.Writer, see below for File example
+	log.SetOutput(os.Stdout)
+
+	// Only log the warning severity or above.
+	log.SetLevel(log.WarnLevel)
+}
 
 func getenv(name string) string {
 	v := os.Getenv(name)
@@ -29,12 +39,6 @@ func getenv(name string) string {
 }
 
 func lyric() {
-	anaconda.SetConsumerKey(consumerKey)
-	anaconda.SetConsumerSecret(consumerSecret)
-	api := anaconda.NewTwitterApi(accessToken, accessTokenSecret)
-
-	api.SetLogger(log)
-
 	lyrics := []string{
 		"From the black bag skip in the parking lot, It's a short bad trip to the candy shop",
 		"Where the shrimps sell smack to the jelly snakes, And the kids buy crack in their morning break",
@@ -169,21 +173,22 @@ func lyric() {
 	rand.Seed(time.Now().Unix())
 	n := rand.Int() % len(lyrics)
 
-	_, err := api.PostTweet(lyrics[n], url.Values{})
+	client := mastodon.NewClient(&mastodon.Config{
+		Server:       mastodonServer,
+		ClientID:     mastodonClientId,
+		ClientSecret: mastodonClientSecret,
+		AccessToken:  mastodonAccessToken,
+	})
+
+	_, err := client.PostStatus(
+		context.Background(),
+		&mastodon.Toot{Status: lyrics[n]},
+	)
 	if err != nil {
-		log.Critical(err)
+		log.Fatal(err)
 	}
 }
 
 func main() {
 	lambda.Start(lyric)
 }
-
-type logger struct {
-	*logrus.Logger
-}
-
-func (log *logger) Critical(args ...interface{})                 { log.Error(args...) }
-func (log *logger) Criticalf(format string, args ...interface{}) { log.Errorf(format, args...) }
-func (log *logger) Notice(args ...interface{})                   { log.Info(args...) }
-func (log *logger) Noticef(format string, args ...interface{})   { log.Infof(format, args...) }
