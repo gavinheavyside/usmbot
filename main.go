@@ -1,24 +1,36 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
+	"fmt"
 	"math/rand"
-	"net/url"
+	"net/http"
 	"os"
 	"time"
 
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/dghubble/oauth1"
+
 	"github.com/aws/aws-lambda-go/lambda"
+	twitter "github.com/g8rswimmer/go-twitter/v2"
 	"github.com/sirupsen/logrus"
 )
 
 var (
-	consumerKey       = getenv("TWITTER_CONSUMER_KEY")
-	consumerSecret    = getenv("TWITTER_CONSUMER_SECRET")
+	apiKey            = getenv("TWITTER_API_KEY")
+	apiKeySecret      = getenv("TWITTER_API_KEY_SECRET")
 	accessToken       = getenv("TWITTER_ACCESS_TOKEN")
 	accessTokenSecret = getenv("TWITTER_ACCESS_TOKEN_SECRET")
-
-	log = &logger{logrus.New()}
+	log               = &logger{logrus.New()}
 )
+
+type authorize struct {
+	Token string
+}
+
+func (a authorize) Add(req *http.Request) {
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", a.Token))
+}
 
 func getenv(name string) string {
 	v := os.Getenv(name)
@@ -29,11 +41,16 @@ func getenv(name string) string {
 }
 
 func lyric() {
-	anaconda.SetConsumerKey(consumerKey)
-	anaconda.SetConsumerSecret(consumerSecret)
-	api := anaconda.NewTwitterApi(accessToken, accessTokenSecret)
-
-	api.SetLogger(log)
+	oauth1Config := oauth1.NewConfig(apiKey, apiKeySecret)
+	twitterHttpClient := oauth1Config.Client(oauth1.NoContext, &oauth1.Token{
+		Token:       accessToken,
+		TokenSecret: accessTokenSecret,
+	})
+	client := &twitter.Client{
+		Authorizer: authorize{},
+		Client:     twitterHttpClient,
+		Host:       "https://api.twitter.com",
+	}
 
 	lyrics := []string{
 		"From the black bag skip in the parking lot, It's a short bad trip to the candy shop",
@@ -169,10 +186,21 @@ func lyric() {
 	rand.Seed(time.Now().Unix())
 	n := rand.Int() % len(lyrics)
 
-	_, err := api.PostTweet(lyrics[n], url.Values{})
+	req := twitter.CreateTweetRequest{
+		Text: lyrics[n],
+	}
+	fmt.Println("Callout to create tweet callout")
+
+	tweetResponse, err := client.CreateTweet(context.Background(), req)
+	if err != nil {
+		log.Criticalf("create tweet error: %v", err)
+	}
+
+	enc, err := json.MarshalIndent(tweetResponse, "", "    ")
 	if err != nil {
 		log.Critical(err)
 	}
+	log.Info(string(enc))
 }
 
 func main() {
