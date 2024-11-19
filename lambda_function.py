@@ -1,45 +1,9 @@
-package main
+import random
+import os
+from atproto import Client
 
-import (
-	"context"
-	"math/rand"
-	"os"
-	"time"
-
-	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/mattn/go-mastodon"
-	log "github.com/sirupsen/logrus"
-)
-
-var (
-	mastodonServer       = getenv("MASTODON_SERVER")
-	mastodonClientId     = getenv("MASTODON_CLIENT_ID")
-	mastodonClientSecret = getenv("MASTODON_CLIENT_SECRET")
-	mastodonAccessToken  = getenv("MASTODON_ACCESS_TOKEN")
-)
-
-func init() {
-	// Log as JSON instead of the default ASCII formatter.
-	log.SetFormatter(&log.JSONFormatter{})
-
-	// Output to stdout instead of the default stderr
-	// Can be any io.Writer, see below for File example
-	log.SetOutput(os.Stdout)
-
-	// Only log the warning severity or above.
-	log.SetLevel(log.WarnLevel)
-}
-
-func getenv(name string) string {
-	v := os.Getenv(name)
-	if v == "" {
-		panic("did you forget your keys? " + name)
-	}
-	return v
-}
-
-func lyric() {
-	lyrics := []string{
+def random_lyric():
+	lyrics = [
 		"From the black bag skip in the parking lot, It's a short bad trip to the candy shop",
 		"Where the shrimps sell smack to the jelly snakes, And the kids buy crack in their morning break",
 		"And the grass grows bluer on the other side, Where the old girls queue for their Mothers Pride",
@@ -167,28 +131,35 @@ func lyric() {
 		"The ambulance sirens rang, as they wheeled her to the stand",
 		"Did the three bears shit in the woods?",
 		"The wheels of justice turned, 'til the tyres were bald and burned",
-		"I'm underage and uninsured, On the High Road to Domestos",
-	}
+		"I'm underage and uninsured, On the High Road to Domestos"
+    ]
 
-	rand.Seed(time.Now().Unix())
-	n := rand.Int() % len(lyrics)
+	return random.choice(lyrics)
 
-	client := mastodon.NewClient(&mastodon.Config{
-		Server:       mastodonServer,
-		ClientID:     mastodonClientId,
-		ClientSecret: mastodonClientSecret,
-		AccessToken:  mastodonAccessToken,
-	})
+def post_to_bluesky():
+	print('logging in')
 
-	_, err := client.PostStatus(
-		context.Background(),
-		&mastodon.Toot{Status: lyrics[n]},
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+	client = Client()
+	client.login(os.getenv('BLUESKY_HANDLE'), os.getenv('BLUESKY_APP_PASSWORD'))
 
-func main() {
-	lambda.Start(lyric)
-}
+	print('logged in')
+	lyric = random_lyric()
+	print('about to post lyric')
+	print(lyric)
+	post = client.send_post(lyric)
+	print('posted lyric')
+
+	return lyric
+
+def lambda_handler(event, context):
+	print('starting function')
+	lyric = post_to_bluesky()
+
+	print('done')
+	return {
+        'statusCode': 200,
+        'body': lyric
+    }
+
+if __name__ == "__main__":
+	post_to_bluesky()
